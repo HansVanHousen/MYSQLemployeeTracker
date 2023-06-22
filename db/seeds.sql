@@ -4,7 +4,7 @@ VALUES
 ('HR'),
 ('Sales'),
 ('Project Manager'),
-('Intern')
+('Intern'),
 ('Peon'),
 ('Facilities');
 
@@ -25,5 +25,5 @@ VALUES
 ('Amanda', 'Taep', 3, 4),
 ('Zach', 'Akros', 4, 1),
 ('Nicki', 'Mei', 5, 4),
-('Han', 'Mouf' 6, 4),
+('Han', 'Mouf', 6, 4),
 ('John', 'Iforget', 7, 5);
