@@ -1,12 +1,12 @@
-INSERT INTO departments (department_name)
+INSERT INTO departments (department_name, department_id)
 VALUES
-('BOSS HOGG'),
-('HR'),
-('Sales'),
-('Project Manager'),
-('Intern'),
-('Peon'),
-('Facilities');
+('BOSS HOGG', 1),
+('HR', 2),
+('Sales', 3),
+('Project Manager', 4),
+('Intern', 5),
+('Peon', 6),
+('Facilities', 7);
 
 INSERT INTO roles (title, salary, department_id)
 VALUES
