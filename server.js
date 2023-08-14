@@ -124,6 +124,7 @@ function addRole() {
     const query = "SELECT * FROM departments";
     connection.query(query, (err, res) => {
         if (err) throw err;
+        // console.log(res);
         inquirer
             .prompt([
                 {
@@ -147,16 +148,17 @@ function addRole() {
             ])
             .then((answers) => {
                 const department = res.find(
-                    (department) => department.name === answers.department
+                    (department) => department.department_name === answers.department
                 );
-                const query = "INSERT INTO roles SET ?";
+                const query = "INSERT INTO roles (title, salary, department_id) VALUES (?,?,?)";
+                // "INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)";
                 connection.query(
                     query,
-                    {
-                        title: answers.title,
-                        salary: answers.salary,
-                        department_id: department,
-                    },
+                    [
+                        answers.title,
+                        answers.salary,
+                        department.id
+                    ],
                     (err, res) => {
                         if (err) throw err;
                         console.log(
@@ -172,31 +174,15 @@ function addRole() {
 // add an employee
 function addEmployee() {
     // get list of roles from db
-    // let dept 
     connection.query("SELECT id, title FROM roles", (error, results) => {
         if (error) {
             console.error(error);
             return;
         }
-        // connection.query(
-        //         'SELECT id, title FROM departments', (error, results2) => {
-        //             if (error) {
-        //                 console.error(error);
-        //                 return;
-        //             }
-        //             dept = results2
-        //         }
-        //     )
         const roles = results.map(({ id, title }) => ({
             name: title,
             value: id,
         }));
-        // const departments = results2.map(({ department_id, department_name }) => ({
-        //     name: department_name,
-        //     value: department_id,
-        // }));
-        // console.log(departments)
-        // get list of employees from the db to use as managers
         connection.query(
             'SELECT id, CONCAT(first_name, " ", last_name) AS name FROM employee',
             (error, results) => {
@@ -238,12 +224,6 @@ function addEmployee() {
                                 ...managers,
                             ],
                         }, 
-                        // {
-                        //         type: "list",
-                        //         name: "departmentId",
-                        //         message: "Select the department:",
-                        //         choices: departments,
-                        //     },
                     ])
                     .then((answers) => {
                         // Insert the employee into the database
