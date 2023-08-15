@@ -4,5 +4,6 @@ This project us a SQL database tool for tracking employee departments, roles, em
 
 
 github repo: https://github.com/HansVanHousen/MYSQLemployeeTracker
-deployed app: https://hansvanhousen.github.io/
-![img](VIDEO)
+deployed app: https://hansvanhousen.github.io/MYSQLemployeeTracker/
+<br>
+[walkthrough video](https://youtu.be/Iz6QYng857I) 
